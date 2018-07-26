@@ -2,6 +2,7 @@
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
+    "babel-plugin-transform-class-properties": "^6.24.1",
     "browser-sync": "^2.18.13",
     "jquery": "^3.2.1",
     "laravel-mix": "^2.1.11",
