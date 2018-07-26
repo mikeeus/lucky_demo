@@ -12,6 +12,8 @@ abstract class GuestLayout
         render_flash
         content
       end
+
+      js_link asset("js/components.js")
     end
   end
 end
