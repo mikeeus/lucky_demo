@@ -1,0 +1,28 @@
+name: lucky_demo
+version: 0.1.0
+
+authors:
+  - mikeeus <itsmikias@gmail.com>
+
+targets:
+  lucky_demo:
+    main: src/lucky_demo.cr
+
+crystal: 0.25.0
+
+dependencies:
+  lucky:
+    github: luckyframework/lucky
+    version: ~> 0.11
+  lucky_migrator:
+    github: luckyframework/lucky_migrator
+    version: ~> 0.6
+  authentic:
+    github: luckyframework/authentic
+    version: ~> 0.1.0
+  carbon:
+    github: luckyframework/carbon
+    version: ~> 0.1.0
+  lucky_flow:
+    github: luckyframework/lucky_flow
+    version: ~> 0.2
