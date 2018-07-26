@@ -16,5 +16,8 @@
     "dev": "yarn run webpack --progress --hide-modules --color --config=node_modules/laravel-mix/setup/webpack.config.js",
     "watch": "yarn run webpack --watch --progress --hide-modules --color --config=node_modules/laravel-mix/setup/webpack.config.js",
     "prod": "NODE_ENV=production yarn run webpack --progress --hide-modules --color --config=node_modules/laravel-mix/setup/webpack.config.js"
+  },
+  "devDependencies": {
+    "babel-preset-react": "^6.24.1"
   }
 }
