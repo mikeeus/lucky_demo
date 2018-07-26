@@ -1,5 +1,6 @@
 class Home::IndexPage < GuestLayout
   def content
-    text "Home page"
+    h1 "React Component"
+    tag "component"
   end
 end
