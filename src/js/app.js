@@ -6,5 +6,13 @@ import RailsUjs from "rails-ujs";
 // Turbolinks is optional. Learn more: https://github.com/turbolinks/turbolinks/
 import Turbolinks from "turbolinks";
 
+// LuckyReactUJS is for adding react components.
+import LuckyReactUJS from "./lucky_react_ujs";
+
+// First import React components
+import { Message, Chat } from './components';
+
 RailsUjs.start();
 Turbolinks.start();
+
+LuckyReactUJS.register({ Message, Chat });
