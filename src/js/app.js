@@ -10,9 +10,9 @@ import Turbolinks from "turbolinks";
 import LuckyReactUJS from "./lucky_react_ujs";
 
 // First import React components
-import { Message, Chat } from './components';
+import { Chat } from './components';
 
 RailsUjs.start();
 Turbolinks.start();
 
-LuckyReactUJS.register({ Message, Chat });
+LuckyReactUJS.register({ Chat });
