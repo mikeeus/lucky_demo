@@ -14,8 +14,9 @@ mix
   //
   // More info and options (like React support) here:
   // https://github.com/JeffreyWay/laravel-mix/blob/master/docs/mixjs.md
-  .js("src/js/app.js", "public/js")  
-  .react("src/js/components.jsx", "public/js")
+  .js("src/js/app.js", "public/js")
+  .js("src/js/react.development.js", "public/js")
+  .js("src/js/react-dom.development.js", "public/js")
   // SASS entry file. Uses autoprefixer automatically.
   .sass("src/css/app.scss", "public/css")
   // Customize postCSS:

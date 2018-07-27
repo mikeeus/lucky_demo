@@ -6,5 +6,8 @@ import RailsUjs from "rails-ujs";
 // Turbolinks is optional. Learn more: https://github.com/turbolinks/turbolinks/
 import Turbolinks from "turbolinks";
 
+import React from 'react';
+import ReactDOM from 'react-dom';
+
 RailsUjs.start();
 Turbolinks.start();

@@ -33,6 +33,6 @@ class TranspileJsx < LuckyCli::Task
   end
 
   private def babel_args(path)
-    ["--presets", "env,react,minify", "--plugins=transform-class-properties", path]
+    ["--presets", "react,env,minify", "--plugins", "transform-class-properties,transform-es2015-modules-commonjs", path]
   end
 end

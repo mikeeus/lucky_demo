@@ -1,5 +1,3 @@
-import React from 'react';
-
 class Component extends React.Component {
   state = {
     query: '',
@@ -67,4 +65,4 @@ class Component extends React.Component {
   }
 }
 
-export default Component;
+// export default Component;
