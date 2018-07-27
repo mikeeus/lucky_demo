@@ -1,14 +1,26 @@
 import React from 'react';
 
+export class Wrapper extends React.Component {  
+  render() {
+    return (
+      <div style={{border: '2px solid'}}>
+        {this.props.children}
+      </div>
+    )
+  }
+}
+
 export class Chat extends React.Component {
   state = {
     messages: []
   }
 
   componentDidMount = () => {
-    this.setState({
-      messages: this.props.messages
-    })
+    if (this.props.messages) {
+      this.setState({
+        messages: this.props.messages
+      })
+    }
   }
   
   getNewId = () => {

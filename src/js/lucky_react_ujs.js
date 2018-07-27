@@ -62,7 +62,20 @@ const LuckyReactUJS = {
       }
       throw new Error(message + ". Make sure you've registered your component, for example: LuckyReactUJS.register({ Component }).")
     } else {
-      ReactDOM.render(React.createElement(constructor, props), node);
+      let children = LuckyReactUJS.nodeChildren(node);
+
+      ReactDOM.render(
+        React.createElement(constructor, { ...props, children }),
+        node
+      );
+    }
+  },
+
+  nodeChildren(node) {
+    if (node.childNodes.length > 0) {
+      return <div dangerouslySetInnerHTML={{ __html: node.innerHTML }} />
+    } else {
+      return null;
     }
   },
 
@@ -101,7 +114,7 @@ const LuckyReactUJS = {
     });
 
     LuckyReactUJS.start();
-  }
+  },
 }
 
 export default LuckyReactUJS;
