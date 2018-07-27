@@ -2,7 +2,9 @@ class Home::IndexPage < GuestLayout
   include React::Component
 
   def content
-    h1 "React Component", style: "text-align: center;"
+    react "Bordered" do
+      h1 "React Component", style: "text-align: center;"
+    end
 
     messages = [
       { id: 1, sender: "me", text: "Hi" },
