@@ -3,6 +3,8 @@ class Home::Index < BrowserAction
   unexpose current_user
 
   get "/" do
+    pp context.request.headers["X-Forwarded-For"]
+
     if current_user?
       redirect Me::Show
     else

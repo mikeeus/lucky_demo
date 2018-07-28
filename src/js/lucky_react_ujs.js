@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-// Based on ReactRails' ReactUJS: https://github.com/reactjs/react-rails/blob/master/react_ujs/index.js
+// Based on ReactRails' React: https://github.com/reactjs/react-rails/blob/master/react_ujs/index.js
 
 // Add event listeners to find all elements with [data-react-class] attribute,
 // get the react class name from the attribute and render the component using
@@ -13,9 +13,9 @@ import ReactDOM from 'react-dom';
 // 
 // ```javascript
 // // src/js/app.js
-// import LuckyReactUJS from "./react_lucky_ujs";
+// import LuckyReact from "./react_lucky";
 // import { Component } from './components';
-// LuckyReactUJS.register({ Component });
+// LuckyReact.register({ Component });
 // ```
 // 
 // And in your Lucky Page.
@@ -30,29 +30,29 @@ import ReactDOM from 'react-dom';
 // end
 // ```
 // 
-const LuckyReactUJS = {
+const LuckyReact = {
   CLASS_NAME_ATTR: 'data-react-class',
   PROPS_ATTR: 'data-react-props',
 
   components: {},
 
   getNodes() {
-    return document.querySelectorAll('[' + LuckyReactUJS.CLASS_NAME_ATTR + ']'); 
+    return document.querySelectorAll('[' + LuckyReact.CLASS_NAME_ATTR + ']'); 
   },
 
   mountComponents() {
-    const nodes = LuckyReactUJS.getNodes();
+    const nodes = LuckyReact.getNodes();
     
     for (let i = 0; i < nodes.length; ++i) {
-      LuckyReactUJS.mountComponent(nodes[i]);
+      LuckyReact.mountComponent(nodes[i]);
     }
   },
 
   mountComponent(node) {
-    let className = node.getAttribute(LuckyReactUJS.CLASS_NAME_ATTR);
-    let constructor = LuckyReactUJS.getConstructor(className);
+    let className = node.getAttribute(LuckyReact.CLASS_NAME_ATTR);
+    let constructor = LuckyReact.getConstructor(className);
     
-    let propsJson = node.getAttribute(LuckyReactUJS.PROPS_ATTR);
+    let propsJson = node.getAttribute(LuckyReact.PROPS_ATTR);
     let props = propsJson && JSON.parse(propsJson);
   
     if (!constructor) {
@@ -60,9 +60,9 @@ const LuckyReactUJS = {
       if (console && console.log) {
         console.log("%c[react-lucky] %c" + message + " for element", "font-weight: bold", "", node)
       }
-      throw new Error(message + ". Make sure you've registered your component, for example: LuckyReactUJS.register({ Component }).")
+      throw new Error(message + ". Make sure you've registered your component, for example: LuckyReact.register({ Component }).")
     } else {
-      let children = LuckyReactUJS.nodeChildren(node);
+      let children = LuckyReact.nodeChildren(node);
 
       ReactDOM.render(
         React.createElement(constructor, { ...props, children }),
@@ -80,7 +80,7 @@ const LuckyReactUJS = {
   },
 
   unmountComponents() {
-    const nodes = LuckyReactUJS.getNodes();
+    const nodes = LuckyReact.getNodes();
   
     for (let i = 0; i < nodes.length; ++i) {
       ReactDOM.unmountComponentAtNode(nodes[i]);
@@ -88,13 +88,13 @@ const LuckyReactUJS = {
   },  
 
   setup() {
-    document.addEventListener('turbolinks:load', LuckyReactUJS.mountComponents);
-    document.addEventListener('turbolinks:before-render', LuckyReactUJS.unmountComponents);
+    document.addEventListener('turbolinks:load', LuckyReact.mountComponents);
+    document.addEventListener('turbolinks:before-render', LuckyReact.unmountComponents);
   },
   
   teardown() {
-    document.removeEventListener('turbolinks:load', LuckyReactUJS.mountComponents);
-    document.removeEventListener('turbolinks:before-render',LuckyReactUJS.unmountComponents);
+    document.removeEventListener('turbolinks:load', LuckyReact.mountComponents);
+    document.removeEventListener('turbolinks:before-render',LuckyReact.unmountComponents);
   },
   
   getConstructor(className) {
@@ -104,8 +104,8 @@ const LuckyReactUJS = {
 
   start() {
     // Remove then add event listeners
-    LuckyReactUJS.teardown();
-    LuckyReactUJS.setup();
+    LuckyReact.teardown();
+    LuckyReact.setup();
   },
 
   register(componentHash) {
@@ -113,8 +113,8 @@ const LuckyReactUJS = {
       this.components[key] = componentHash[key]
     });
 
-    LuckyReactUJS.start();
+    LuckyReact.start();
   },
 }
 
-export default LuckyReactUJS;
+export default LuckyReact;
