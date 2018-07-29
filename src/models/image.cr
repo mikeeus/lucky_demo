@@ -24,7 +24,10 @@ class Image < BaseModel
   end
 
   def delete!
-    File.delete(full_path)
+    if File.exists?(full_path)
+      File.delete(full_path)
+    end
+
     delete
   end
 end
