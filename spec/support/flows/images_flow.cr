@@ -9,19 +9,16 @@ class ImagesFlow < BaseFlow
 
   def homepage_should_display_image(id)
     visit Home::Index
-
     image(id).should be_on_page    
   end
 
   def homepage_should_not_display_image(id)
     visit Home::Index
-
     image(id).should_not be_on_page    
   end
 
   def delete_image_from_homepage(id)
     visit Home::Index
-
     click "@delete-image-#{id}"
   end
 
