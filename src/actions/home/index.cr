@@ -6,7 +6,7 @@ class Home::Index < BrowserAction
     if current_user?
       redirect Me::Show
     else
-      render Lucky::WelcomePage
+      render Home::IndexPage, form: ImageForm.new
     end
   end
 end
