@@ -14,8 +14,10 @@ class Images::Create < BrowserAction
           flash.success = "Image successfuly uploaded from #{current_ip}!"
           redirect to: Home::Index
         else
+          images = ImageQuery.new.owner_ip(current_ip)
+
           flash.danger = "Image upload failed"
-          render Home::IndexPage, form: form
+          render Home::IndexPage, form: form, images: images
         end
       end
     end

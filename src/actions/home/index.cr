@@ -6,7 +6,9 @@ class Home::Index < BrowserAction
     if current_user?
       redirect Me::Show
     else
-      render Home::IndexPage, form: ImageForm.new
+      images = ImageQuery.new.owner_ip(current_ip)
+
+      render Home::IndexPage, form: ImageForm.new, images: images
     end
   end
 end
