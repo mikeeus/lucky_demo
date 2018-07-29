@@ -11,31 +11,31 @@ describe "Images flow" do
     end
   end
 
-  describe "uploading" do    
+  describe "uploading" do
     it "works with valid image" do
       flow = ImagesFlow.new
-  
+
       flow.upload_image(valid_image_path)
       flow.image_should_be_created(valid_image_path)
     end
-  
+
     it "doesnt work with image above 250kb" do
       flow = ImagesFlow.new
-  
+
       flow.upload_image(too_big_image_path)
       flow.image_should_not_be_created(too_big_image_path)
     end
-  
+
     it "doesnt work with dimensions over 1000x1000" do
       flow = ImagesFlow.new
-  
+
       flow.upload_image(too_tall_image_path)
       flow.image_should_not_be_created(too_tall_image_path)
     end
-  
+
     it "doesnt work with image of the wrong format" do
       flow = ImagesFlow.new
-  
+
       flow.upload_image(wrong_format_image_path)
       flow.image_should_not_be_created(wrong_format_image_path)
     end

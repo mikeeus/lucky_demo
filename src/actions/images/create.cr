@@ -24,6 +24,6 @@ class Images::Create < BrowserAction
   end
 
   private def is_invalid(file)
-    file.nil? || file.metadata.filename.nil? || file.not_nil!.metadata.filename.not_nil!.empty?    
+    file.nil? || file.metadata.filename.nil? || file.not_nil!.metadata.filename.not_nil!.empty?
   end
 end

@@ -21,7 +21,7 @@ class ImageForm < Image::BaseForm
 
     if errors.empty?
       save_image
-      
+
       views.value = 1
       filename.value = new_filename
       owner_ip.value = ip
