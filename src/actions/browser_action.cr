@@ -12,6 +12,18 @@ abstract class BrowserAction < Lucky::Action
   # `Auth::SkipRequireSignIn` module in `src/mixins/auth/skip_require_sign_in.cr`
   include Auth::RequireSignIn
 
+  def current_ip
+    current_ip?.not_nil!
+  end
+
+  private def current_ip?
+    if Lucky::Env.production?
+      context.request.headers["X-FORWARDED-FOR"]?
+    else
+      "local"
+    end
+  end
+
   # `expose` means that `current_user` will be passed to pages automatically.
   #
   # In default Lucky apps, the `MainLayout` declares it `needs current_user : User`
