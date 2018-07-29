@@ -24,10 +24,41 @@ class Home::IndexPage < GuestLayout
             img src: asset("images/x.png")
           end
 
-          div image.url, class: "image-url",  flow_id: "image-url-#{image.id}"
+          image_url_id = "image-url-#{image.id}"
+
+          div image.url,
+            class: "image-url",
+            flow_id: image_url_id,
+            onClick: "copyToClipboard('#{image_url_id}')"
         end
       end
     end
+
+    copy_to_clipboard_script
+  end
+
+  private def copy_to_clipboard_script
+    raw %(
+      <script>
+      function copyToClipboard(element) {
+        var $toCopy = document.querySelector('[flow-id=' + element + ']');
+        
+        if ($toCopy) {
+          var $tempCp = document.createElement('input');
+          document.body.appendChild($tempCp)
+
+          console.log('toCopy: ', $toCopy);
+
+          $tempCp.value = $toCopy.innerHTML
+          $tempCp.select();
+  
+          document.execCommand('copy');
+          document.body.removeChild($tempCp);
+        }
+        $toCopy = null;
+      }
+      </script>
+    )
   end
 
   private def render_form(f)

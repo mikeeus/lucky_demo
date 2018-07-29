@@ -8,19 +8,19 @@ class Image < BaseModel
   end
 
   def url
-    "#{Lucky::RouteHelper.settings.base_uri}/#{path}"
+    "#{Lucky::RouteHelper.settings.base_uri}/images/#{filename}"
   end
 
   def path
     if Lucky::Env.test?
-      "assets/images/test/#{self.filename}"
+      "/assets/images/test/#{self.filename}"
     else
-      "assets/images/#{self.filename}"
+      "/assets/images/#{self.filename}"
     end
   end
 
   def full_path
-    "public/#{path}"
+    "public#{path}"
   end
 
   def delete!
