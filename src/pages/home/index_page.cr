@@ -3,10 +3,23 @@ class Home::IndexPage < GuestLayout
   needs images : ImageQuery
 
   def content
+    homepage_header
+
     div class: "homepage-container" do
-      render_form(@form)
+      h1 "Welcome, Add your files here!"
+
+      render_happy_form(@form)
       
       gallery
+    end
+  end
+
+  private def homepage_header
+    header class: "homepage-header" do
+      div class: "wrapper" do
+        img src: asset("images/happy.png")
+        h2 "Happy Host"
+      end
     end
   end
 
@@ -61,17 +74,43 @@ class Home::IndexPage < GuestLayout
     )
   end
 
-  private def render_form(f)
-    form_for Images::Create, enctype: "multipart/form-data" do
-      text_input f.image, type: "file", flow_id: "file-input"      
-
-      ul do
-        f.image.errors.each do |err|
-          li "Image #{err}", class: "error"
+  private def render_happy_form(f)
+    form_for Images::Create, enctype: "multipart/form-data", id: "upload-form" do
+      div class: "drag-drop-container" do
+        para "Drag or Drop Image", class: "drag-drop"
+  
+        img src: asset("images/upload.png")
+  
+        para class: "or-click" do
+          text "Or"
+          br
+          span "Click to Upload"
         end
+
+        text_input f.image, type: "file", id: "file-input"
       end
 
-      submit "Upload Image", flow_id: "upload-image"
+      submit "Upload Image", flow_id: "upload-button", id: "form-submit", disabled: "true"
     end
+
+    ul do
+      f.image.errors.each do |err|
+        li "Image #{err}", class: "error"
+      end
+    end
+
+    raw %(<script>#{upload_script}</script>)
+  end
+    
+  private def upload_script
+    <<-JS
+      const form = document.getElementById('upload-form');
+      const input = document.getElementById('file-input');
+      const submit = document.getElementById('form-submit');
+      form.addEventListener('change', () => {
+        submit.removeAttribute('disabled');
+        document.getElementById('form-message').innerHTML = "<h3>Item selected</h3>";
+      });
+    JS
   end
 end

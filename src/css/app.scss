@@ -14,6 +14,31 @@
 @import "~normalize-scss/sass/normalize/import-now";
 // @import "components/my_new_component";
 
+/* tahoma-700 - latin */
+@font-face {
+  font-family: 'Tahoma';
+  font-style: normal;
+  font-weight: 700;
+  src: url('/fonts/tahoma/tahoma-bold.eot'); /* IE9 Compat Modes */
+  src: local('Tahoma Bold'), local('Tahoma-Bold'),
+       url('/fonts/tahoma/tahoma-bold.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('/fonts/tahoma/tahoma-bold.woff') format('woff'), /* Modern Browsers */
+       url('/fonts/tahoma/tahoma-bold.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('/fonts/tahoma/tahoma-bold.svg#Tahoma') format('svg'); /* Legacy iOS */
+}
+/* american-typewriter-700 - latin */
+@font-face {
+  font-family: 'American Typewriter';
+  font-style: normal;
+  font-weight: 700;
+  src: url('/fonts/american-typewriter/american-typewriter.eot'); /* IE9 Compat Modes */
+  src: local('American Typewriter Bold'), local('American Typewriter-Bold'),
+       url('/fonts/american-typewriter/american-typewriter.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('/fonts/american-typewriter/american-typewriter.woff') format('woff'), /* Modern Browsers */
+       url('/fonts/american-typewriter/american-typewriter.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('/fonts/american-typewriter/american-typewriter.svg#American Typewriter') format('svg'); /* Legacy iOS */
+}
+
 .flash-danger, .flash-success {
   padding: 5px;
   font-weight: bold;
@@ -25,6 +50,43 @@
 }
 .flash-danger {
   background: #f44336;
+}
+
+
+header.homepage-header {
+  height: 92px;
+  width: 100%;
+  background: linear-gradient(to bottom, #76AFD8, #4A90E2);
+  margin-bottom: 6px;
+  .wrapper {
+    box-sizing: border-box;
+    align-items: center;
+    display: flex;
+    max-width: 1440px;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    padding: 0 36px;
+    h2 {
+      margin-left: 22px;
+      width: 212px;
+      height: 44px;
+      color: #ffffff;
+      font-family: "American Typewriter";
+      font-size: 36px;
+      font-weight: 700;
+    }
+  }
+}
+
+body {
+  font-family: Tahoma, Helvetica, arial, sans-serif;
+  font-weight: bold;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: American Typewriter, serif;
+  font-weight: bold;
 }
 
 .homepage-container {
@@ -87,5 +149,100 @@
         box-sizing: border-box;
       }
     }
+  }
+}
+
+
+.homepage-container {
+  max-width: 1000px;
+  box-sizing: border-box;
+  margin: auto;
+  margin-bottom: 30px;
+  width: 100%;
+  background: #F5F5F5;
+  border: 1px solid #979797;
+  box-shadow: 2px, 4px, rgba(0, 0, 0, 0.5);
+  h1 {
+    text-align: center;
+    height: 44px;
+    color: #333333;
+    font-family: "American Typewriter";
+    font-size: 36px;
+  }
+  form {
+    text-align: center;
+    .drag-drop-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 313px;
+      height: 196px;
+      border: 2px solid #1D5F9B;
+      border-radius: 8px;
+      background: #FEFEF6;
+      box-sizing: border-box;
+      margin: auto;
+      margin-bottom: 22px;
+      position: relative;
+      font-size: 14px;
+      font-weight: 700;
+      .drag-drop {
+        color: #333333;
+      }
+      .or-click {
+        margin: 0;
+        text-align: center;
+        line-height: 24px;
+        font-weight: bold;
+        line-height: 17px;
+        color: #333333;
+        span {
+          color: #1d5f9b;
+          line-height: 24px;
+        }
+      }
+      img {
+        width: 55px;
+        margin-bottom: 7px;
+      }
+      #file-input {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        opacity: 0;
+        cursor: pointer;
+      }
+    }
+    #form-submit {
+      width: 198px;
+      height: 51px;
+      font-size: 14px;
+      line-height: 17px;
+      background: linear-gradient(to bottom, #76AFD8, #4A90E2);
+      border: 2px solid #1D5F9B;
+      border-radius: 8px;
+      font-weight: bold;
+      color: white;
+      cursor: pointer;
+      padding: 15px 0 15px 50px;
+      text-align: left;
+    }
+    #form-submit:disabled {
+      background: grey !important;
+      border: grey !important;
+    }
+  }
+
+  h2 {
+    color: #333333;
+    margin-bottom: 32px;
+    margin-left: 39px;
+    margin-top: 34px;
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 49px;
   }
 }
