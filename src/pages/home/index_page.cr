@@ -16,11 +16,14 @@ class Home::IndexPage < GuestLayout
     ul class: "image-gallery" do
       @images.map do |image|
         li class: "image", flow_id: "image-#{image.id}" do
-          div class: "picture", style: "background-image: url(#{image.path});" do
+        link to: Images::Show.with(image.filename),
+             class: "picture",
+             style: "background-image: url(#{image.path});" do
             div "Views: #{image.views}", class: "views"
           end
 
-          link to: Images::Delete.with(image.id), flow_id: "delete-image-#{image.id}" do
+          link to: Images::Delete.with(image.id),
+               flow_id: "delete-image-#{image.id}" do
             img src: asset("images/x.png")
           end
 

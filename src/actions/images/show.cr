@@ -8,6 +8,7 @@ class Images::Show < BrowserAction
       flash.danger = "Image with filename: #{filename} not found"
       redirect to: Home::Index
     else
+      ImageViewsForm.update!(image)
       render Images::ShowPage, image: image
     end
   end
