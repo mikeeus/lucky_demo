@@ -48,5 +48,5 @@ private def too_big_image_path
 end
 
 private def wrong_format_image_path
-  "public/assets/images/test/wrong_format.bmp"
+  "public/assets/images/test/wrong_format_240x245_235kb.bmp"
 end
