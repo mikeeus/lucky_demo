@@ -11,7 +11,7 @@ class Home::IndexPage < GuestLayout
       h1 "Welcome, Add your files here!"
 
       render_happy_form(@form)
-      
+
       gallery
     end
   end
@@ -47,9 +47,9 @@ class Home::IndexPage < GuestLayout
     form_for Images::Create, enctype: "multipart/form-data", id: "upload-form" do
       div class: "drag-drop-container" do
         para "Drag or Drop Image", class: "drag-drop"
-  
+
         img src: asset("images/upload.png")
-  
+
         para class: "or-click" do
           text "Or"
           br
@@ -59,7 +59,7 @@ class Home::IndexPage < GuestLayout
         text_input f.image, type: "file", id: "file-input"
       end
 
-      submit "Upload Image", flow_id: "upload-button", id: "form-submit", disabled: "true"
+      submit "Upload Image", flow_id: "upload-image", id: "form-submit", disabled: "true"
     end
 
     ul do
@@ -70,7 +70,7 @@ class Home::IndexPage < GuestLayout
 
     raw %(<script>#{upload_script}</script>)
   end
-    
+
   private def upload_script
     <<-JS
       var happyForm = document.getElementById('upload-form');
@@ -88,7 +88,7 @@ class Home::IndexPage < GuestLayout
       <script>
       function copyToClipboard(element) {
         var $toCopy = document.querySelector('[flow-id=' + element + ']');
-        
+
         if ($toCopy) {
           var $tempCp = document.createElement('input');
           document.body.appendChild($tempCp)
@@ -97,7 +97,7 @@ class Home::IndexPage < GuestLayout
 
           $tempCp.value = $toCopy.innerHTML
           $tempCp.select();
-  
+
           document.execCommand('copy');
           document.body.removeChild($tempCp);
         }
