@@ -1,9 +1,11 @@
 class Home::IndexPage < GuestLayout
+  include Layout::HeaderComponent
+
   needs form : ImageForm
   needs images : ImageQuery
 
   def content
-    homepage_header
+    render_header
 
     div class: "homepage-container" do
       h1 "Welcome, Add your files here!"
@@ -11,15 +13,6 @@ class Home::IndexPage < GuestLayout
       render_happy_form(@form)
       
       gallery
-    end
-  end
-
-  private def homepage_header
-    header class: "homepage-header" do
-      div class: "wrapper" do
-        img src: asset("images/happy.png")
-        h2 "Happy Host"
-      end
     end
   end
 
@@ -48,30 +41,6 @@ class Home::IndexPage < GuestLayout
     end
 
     copy_to_clipboard_script
-  end
-
-  private def copy_to_clipboard_script
-    raw %(
-      <script>
-      function copyToClipboard(element) {
-        var $toCopy = document.querySelector('[flow-id=' + element + ']');
-        
-        if ($toCopy) {
-          var $tempCp = document.createElement('input');
-          document.body.appendChild($tempCp)
-
-          console.log('toCopy: ', $toCopy);
-
-          $tempCp.value = $toCopy.innerHTML
-          $tempCp.select();
-  
-          document.execCommand('copy');
-          document.body.removeChild($tempCp);
-        }
-        $toCopy = null;
-      }
-      </script>
-    )
   end
 
   private def render_happy_form(f)
@@ -104,13 +73,37 @@ class Home::IndexPage < GuestLayout
     
   private def upload_script
     <<-JS
-      const form = document.getElementById('upload-form');
-      const input = document.getElementById('file-input');
-      const submit = document.getElementById('form-submit');
-      form.addEventListener('change', () => {
-        submit.removeAttribute('disabled');
-        document.getElementById('form-message').innerHTML = "<h3>Item selected</h3>";
+      var happyForm = document.getElementById('upload-form');
+      var happyInput = document.getElementById('file-input');
+      var happySubmit = document.getElementById('form-submit');
+      happyForm.addEventListener('change', () => {
+        happySubmit.removeAttribute('disabled');
+        document.querySelector('p.or-click').innerHTML = "<h3>Item selected</h3>";
       });
     JS
+  end
+
+  private def copy_to_clipboard_script
+    raw %(
+      <script>
+      function copyToClipboard(element) {
+        var $toCopy = document.querySelector('[flow-id=' + element + ']');
+        
+        if ($toCopy) {
+          var $tempCp = document.createElement('input');
+          document.body.appendChild($tempCp)
+
+          console.log('toCopy: ', $toCopy);
+
+          $tempCp.value = $toCopy.innerHTML
+          $tempCp.select();
+  
+          document.execCommand('copy');
+          document.body.removeChild($tempCp);
+        }
+        $toCopy = null;
+      }
+      </script>
+    )
   end
 end
