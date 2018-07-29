@@ -1,4 +1,5 @@
 require "uuid"
+require "crymagick"
 
 class ImageForm < Image::BaseForm
   fillable filename
@@ -11,12 +12,42 @@ class ImageForm < Image::BaseForm
   needs ip : String, on: :create
 
   getter new_filename
+  getter crymagick_image : CryMagick::Image?
 
   def prepare
-    save_image
-    views.value = 1
-    filename.value = new_filename
-    owner_ip.value = ip
+    validate_is_correct_size
+    validate_is_correct_dimensions
+    
+    if errors.empty?
+      save_image
+      
+      views.value = 1
+      filename.value = new_filename
+      owner_ip.value = ip
+    end
+  end
+
+  private def validate_is_correct_size
+    size = crymagick_image.size
+    if size > 250_000
+      image.add_error "size should be less than 250kb but was #{size / 1000}kb"
+    end
+  end
+
+  private def validate_is_correct_dimensions
+    dimensions = crymagick_image.dimensions
+
+    if dimensions.first > 1000
+      image.add_error "width should be less than 1000px, but was #{dimensions.first}px"
+    end
+
+    if dimensions.last > 1000
+      image.add_error "height should be less than 1000px, but was #{dimensions.last}px"
+    end
+  end
+
+  private def crymagick_image
+    @crymagick_image ||= CryMagick::Image.open(uploaded.tempfile.path)
   end
 
   private def uploaded
