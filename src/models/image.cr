@@ -2,7 +2,7 @@ class Image < BaseModel
   table :images do
     column filename : String
     column owner_ip : String
-    column views : Int64
+    column views : Int32
   end
 
   def url
