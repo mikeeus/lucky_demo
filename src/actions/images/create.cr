@@ -5,19 +5,23 @@ class Images::Create < BrowserAction
   route do
     file = params.nested_file?(:image)["image"]?
 
-    if file.nil? || file.metadata.filename.nil?
+    if is_invalid(file)
       flash.danger = "Please select a file to upload"
       redirect to: Home::Index
     else
-      ImageForm.create(file: file, ip: current_ip) do |form, image|
+      ImageForm.create(file: file.not_nil!, ip: current_ip) do |form, image|
         if image
           flash.success = "Image successfuly uploaded from #{current_ip}!"
           redirect to: Home::Index
         else
           flash.danger = "Image upload failed"
-          redirect to: Home::Index
+          render Home::IndexPage, form: form
         end
       end
     end
+  end
+
+  private def is_invalid(file)
+    file.nil? || file.metadata.filename.nil? || file.not_nil!.metadata.filename.not_nil!.empty?    
   end
 end
