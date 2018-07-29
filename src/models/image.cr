@@ -1,4 +1,6 @@
 class Image < BaseModel
+  VALID_FORMATS = %w[jpg jpeg png gif]
+
   table :images do
     column filename : String
     column owner_ip : String

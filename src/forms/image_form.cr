@@ -17,13 +17,22 @@ class ImageForm < Image::BaseForm
   def prepare
     validate_is_correct_size
     validate_is_correct_dimensions
-    
+    validate_is_correct_format
+
     if errors.empty?
       save_image
       
       views.value = 1
       filename.value = new_filename
       owner_ip.value = ip
+    end
+  end
+
+  private def validate_is_correct_format
+    ext = crymagick_image.type
+
+    unless Image::VALID_FORMATS.includes? "#{ext}".downcase
+      image.add_error "extension should be jpg, jpeg, gif or png but was #{ext}"
     end
   end
 
