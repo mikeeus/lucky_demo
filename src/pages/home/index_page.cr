@@ -1,5 +1,7 @@
+require "lucky_react"
+
 class Home::IndexPage < GuestLayout
-  include React::Component
+  include LuckyReact
 
   def content
     react "Bordered" do
