@@ -26,3 +26,5 @@ dependencies:
   lucky_flow:
     github: luckyframework/lucky_flow
     version: ~> 0.2
+  lucky_react:
+    github: mikeeus/lucky_react

@@ -40,6 +40,10 @@ shards:
     github: luckyframework/lucky_migrator
     version: 0.6.0
 
+  lucky_react:
+    github: mikeeus/lucky_react
+    version: 0.1.0
+
   lucky_record:
     github: luckyframework/lucky_record
     version: 0.6.0
